@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Invites</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculadora de Invites</h2>
+        <label for="gb">Cantidad de GB:</label>
+        <input type="number" id="gb" min="1" max="128" placeholder="Ingrese los GB" required>
+        
+        <label for="dias">Número de días:</label>
+        <input type="number" id="dias" min="1" max="365" placeholder="Ingrese los días" required>
+        
+        <button onclick="calcularInvites()">Calcular Invites</button>
+        
+        <div class="result" id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularInvites() {
+            const k = 0.1042;
+            const gb = parseFloat(document.getElementById('gb').value);
+            const dias = parseFloat(document.getElementById('dias').value);
+            
+            if (!isNaN(gb) && !isNaN(dias)) {
+                const invites = k * gb * dias;
+                document.getElementById('resultado').innerHTML = `Invites: ${Math.round(invites)}`;
+            } else {
+                document.getElementById('resultado').innerHTML = 'Por favor, ingrese valores válidos.';
+            }
+        }
+    </script>
+</body>
+</html>
+
